@@ -4,6 +4,7 @@ import Preloader from '../Preloader/Preloader';
 import GoodsList from '../GoodsList/GoodsList';
 import Cart from '../Cart/Cart';
 import BasketList from '../BasketList/BasketList';
+import AlertBuy from '../AlertBuy/AlertBuy';
 
 const Shop = () => {
 
@@ -11,6 +12,7 @@ const Shop = () => {
     const [loading, setLoading] = useState(true);
     const [order, setOrder] = useState([]);
     const [isBasketShow, setBasketShow] = useState(false);
+    const [alertName, setAlertName] = useState('');
 
     useEffect(() => {
         fetch(API_URL, {
@@ -46,7 +48,7 @@ const Shop = () => {
             })
             setOrder(newOrder);
         }
-        
+        setAlertName(item.name);
     }
 
     const removeOrder = (id) => {
@@ -85,6 +87,10 @@ const Shop = () => {
         }))
     }
 
+    const closeAlert = () => {
+        setAlertName('');
+    }
+
     return (
         <main className='container content'>
             <Cart quantity={order.length} handleBasketShow={handleBasketShow}/>
@@ -93,6 +99,9 @@ const Shop = () => {
             }
             {
                 isBasketShow && <BasketList order={order} handleBasketShow={handleBasketShow} removeOrder={removeOrder} plusQuantity={plusQuantity} minusQuantity={minusQuantity}/>
+            }
+            {
+                alertName && <AlertBuy name={alertName} closeAlert={closeAlert}/>
             }
         </main>
     );

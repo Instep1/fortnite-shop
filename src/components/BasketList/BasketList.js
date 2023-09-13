@@ -18,6 +18,7 @@ const BasketList = ({order, handleBasketShow, removeOrder, plusQuantity, minusQu
                 }) : <li className="collection-item">Корзина пуста</li>
                 }
                 <li className="collection-item active">Общая стоимость: {totalPrice} варбаксов.</li>
+                <li className="collection-item"><button className="btn-small">Оформить</button></li>
                 <i className='material-icons basketList-close' onClick={handleBasketShow}>close</i>
             </ul>  
         </div>
