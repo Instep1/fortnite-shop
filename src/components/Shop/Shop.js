@@ -49,8 +49,40 @@ const Shop = () => {
         
     }
 
+    const removeOrder = (id) => {
+        setOrder(order.filter(el => {
+            return el.id !== id
+        }))
+    }
+
     const handleBasketShow = () => {
         setBasketShow(!isBasketShow);
+    }
+
+    const plusQuantity = (id) => {
+        setOrder(order.map((orderItem) => {
+            if(orderItem.id === id) {
+                return {
+                    ...orderItem,
+                    quantity: orderItem.quantity + 1
+                }
+            } else {
+                return orderItem
+            }
+        }))
+    }
+
+    const minusQuantity = (id) => {
+        setOrder(order.map((orderItem) => {
+            if(orderItem.id === id) {
+                return {
+                    ...orderItem,
+                    quantity: orderItem.quantity === 0 ? 0 : orderItem.quantity - 1
+                }
+            } else {
+                return orderItem
+            }
+        }))
     }
 
     return (
@@ -60,7 +92,7 @@ const Shop = () => {
                 loading ? <Preloader/> : <GoodsList goods={goods} addOrder={addOrder}/>
             }
             {
-                isBasketShow && <BasketList order={order} handleBasketShow={handleBasketShow}/>
+                isBasketShow && <BasketList order={order} handleBasketShow={handleBasketShow} removeOrder={removeOrder} plusQuantity={plusQuantity} minusQuantity={minusQuantity}/>
             }
         </main>
     );
