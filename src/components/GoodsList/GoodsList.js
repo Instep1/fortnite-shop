@@ -2,7 +2,7 @@ import React from 'react';
 import GoodsItem from '../GoodsItem/GoodsItem';
 import './goodsList.scss';
 
-const GoodsList = ({goods = []}) => {
+const GoodsList = ({goods = [], addOrder}) => {
 
     if(!goods.length) {
         return <h3>Nothing here</h3>
@@ -11,7 +11,7 @@ const GoodsList = ({goods = []}) => {
     return (
         <div className='goods'>
             {goods.map(good => {
-                return <GoodsItem key={good.id} {...good}/>
+                return <GoodsItem key={good.id} {...good} addOrder={addOrder}/>
             })}
         </div>
     );
