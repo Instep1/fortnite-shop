@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ShopContext } from '../../context';
 import './basketItem.scss';
 
-const BasketItem = ({id, name, price, quantity, removeOrder, plusQuantity, minusQuantity}) => {
+const BasketItem = ({id, name, price, quantity}) => {
+
+    const {removeOrder, plusQuantity, minusQuantity} = useContext(ShopContext);
+
     return (
         <div>
             <li href="#!" className="collection-item">

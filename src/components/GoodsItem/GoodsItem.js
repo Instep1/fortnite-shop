@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ShopContext } from '../../context';
 import './goodsItem.scss';
 
-const GoodsItem = ({id, name, description, price, full_background, addOrder}) => {
+const GoodsItem = ({id, name, description, price, full_background}) => {
+    const { addOrder } = useContext(ShopContext)
+
     return (
         
         <div className="card">
